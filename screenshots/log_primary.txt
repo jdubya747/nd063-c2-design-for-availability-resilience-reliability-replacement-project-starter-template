@@ -1,0 +1,98 @@
+[ec2-user@ip-10-1-11-18 ~]$ mysql -h udacity.cd6w8ribrxln.us-east-1.rds.amazonaws.com -P 3306 -u admin -p H00siers
+Enter password: 
+ERROR 1049 (42000): Unknown database 'H00siers'
+[ec2-user@ip-10-1-11-18 ~]$ mysql -h udacity.cd6w8ribrxln.us-east-1.rds.amazonaws.com -P 3306 -u admin -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 43
+Server version: 8.0.28 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.       
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.01 sec)
+
+MySQL [(none)]> CREATE DATABASE students;
+Query OK, 1 row affected (0.03 sec)
+
+MySQL [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| students           |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+MySQL [(none)]> USE students;
+Database changed
+MySQL [students]> CREATE TABLE students(id INT NOT NULL,name VARCHAR(60) NOT NULL,age INT NOT NULL,address VARCHAR(25) NOT NULL,city VARCHAR(30) NOT NULL,state VARCHAR(30) NOT NULL,PRIMARY KEY(id));
+Query OK, 0 rows affected (0.11 sec)
+
+MySQL [students]> DESCRIBE students
+    -> ;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| id      | int         | NO   | PRI | NULL    |       |
+| name    | varchar(60) | NO   |     | NULL    |       |
+| age     | int         | NO   |     | NULL    |       |
+| address | varchar(25) | NO   |     | NULL    |       |
+| city    | varchar(30) | NO   |     | NULL    |       |
+| state   | varchar(30) | NO   |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+MySQL [students]> INSERT INTO movies VALUE (1000, "Sam Houston", 19, "One Astros circle", "Austin", "Texas");
+ERROR 1146 (42S02): Table 'students.movies' doesn't exist
+MySQL [students]> INSERT INTO students VALUE (1000, "Sam Houston", 19, "One Astros circle", "Austin", "Texas");
+Query OK, 1 row affected (0.01 sec)
+
+MySQL [students]> INSERT INTO students VALUE (1000, "Cleatus Milbrow", 20, 
+"One Infinite Loop", "Cupertino", "California");
+ERROR 1062 (23000): Duplicate entry '1000' for key 'students.PRIMARY'      
+MySQL [students]> INSERT INTO students VALUE (2000, "Cleatus Milbrow", 20, 
+"One Infinite Loop", "Cupertino", "California");
+Query OK, 1 row affected (0.00 sec)
+
+MySQL [students]> INSERT INTO students VALUE (3000, "Gran Pappy", 101, "One Shady Rest Lane", "Tampa", "Florida");
+Query OK, 1 row affected (0.01 sec)
+
+MySQL [students]> select * from students
+    -> ;
++------+-----------------+-----+---------------------+-----------+------------+
+| id   | name            | age | address             | city      | state   
+   |
++------+-----------------+-----+---------------------+-----------+------------+
+| 1000 | Sam Houston     |  19 | One Astros circle   | Austin    | Texas   
+   |
+| 2000 | Cleatus Milbrow |  20 | One Infinite Loop   | Cupertino | California |
+| 3000 | Gran Pappy      | 101 | One Shady Rest Lane | Tampa     | Florida 
+   |
++------+-----------------+-----+---------------------+-----------+------------+
+3 rows in set (0.00 sec)
+
+MySQL [students]> select * from Students where age > 50;
+ERROR 1146 (42S02): Table 'students.Students' doesn't exist
+MySQL [students]> select * from students where age > 50;
++------+------------+-----+---------------------+-------+---------+        
+| id   | name       | age | address             | city  | state   |        
++------+------------+-----+---------------------+-------+---------+        
+| 3000 | Gran Pappy | 101 | One Shady Rest Lane | Tampa | Florida |        
++------+------------+-----+---------------------+-------+---------+        
+1 row in set (0.00 sec)
+
+MySQL [students]> 

@@ -1,0 +1,7 @@
+Minimum RTO for a single AZ outage would be nil as the RDS DB master with standby spans two allowing one to continue operation 
+in the event of a single AZ outage. Minimum RTO for the a region failue would be 15 minutes as manual operation is required in the event 
+that the master DB region went down. The replica in the second region then could be manually promoted to take over "write" duties. 
+In ours scenario, we did not automate this yet yielding the time for manual opertion. Minimum RPO, measured in time to recover from 
+loss of data in the case of an AZ failure or region is nill as there is no data loss. Either switching to standby for AZ failure and 
+promotion for Region failure. As the promotion process should insure that all replacants completed. Additionally, clients will receive write 
+errors at the time of failure thus preventing new data from entering.

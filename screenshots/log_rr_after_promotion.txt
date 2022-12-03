@@ -1,0 +1,35 @@
+MySQL [students]> select * from students;
+ERROR 2006 (HY000): MySQL server has gone away
+No connection. Trying to reconnect...
+Connection id:    11
+Current database: students
+
++------+-----------------+-----+---------------------+-----------+------------+
+| id   | name            | age | address
+ | city      | state      |
++------+-----------------+-----+---------------------+-----------+------------+
+| 1000 | Sam Houston     |  19 | One Astros circle  
+ | Austin    | Texas      |
+| 2000 | Cleatus Milbrow |  20 | One Infinite Loop  
+ | Cupertino | California |
+| 3000 | Gran Pappy      | 101 | One Shady Rest Lane | Tampa     | Florida    |
++------+-----------------+-----+---------------------+-----------+------------+
+3 rows in set (0.04 sec)
+
+MySQL [students]>  INSERT INTO students VALUE (4000, "Mortimer Alberson", 22, "One Main street", "Bean Blossom", "Indiana");
+Query OK, 1 row affected (0.00 sec)
+
+MySQL [students]> select * from students;
++------+-------------------+-----+---------------------+--------------+------------+
+| id   | name              | age | address
+   | city         | state      |
++------+-------------------+-----+---------------------+--------------+------------+
+| 1000 | Sam Houston       |  19 | One Astros circle   | Austin       | Texas      |
+| 2000 | Cleatus Milbrow   |  20 | One Infinite Loop   | Cupertino    | California |
+| 3000 | Gran Pappy        | 101 | One Shady Rest Lane | Tampa        | Florida    |
+| 4000 | Mortimer Alberson |  22 | One Main street  
+   | Bean Blossom | Indiana    |
++------+-------------------+-----+---------------------+--------------+------------+
+4 rows in set (0.00 sec)
+
+MySQL [students]> 
